@@ -1,8 +1,7 @@
-package com.cos.costagram.domain;
+package com.cos.costagram.domain.user;
 
 import java.sql.Timestamp;
 
-import javax.annotation.Generated;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,12 +12,17 @@ import org.hibernate.annotations.CreationTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Data
 @Entity
 public class User {
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id; 
@@ -35,10 +39,11 @@ public class User {
 	private String phone;
 	private String gender;
 	
-	private String profileImage;
+	private String profileImageUrl;
 	private String provider; // 제공자 Google, Facebook, Naver
 	
-	private String role; // USER,ADMIN
+	private String role; // USER, ADMIN
+	
 	@CreationTimestamp
 	private Timestamp createDate;
 }
