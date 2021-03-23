@@ -1,5 +1,7 @@
 package com.cos.costagram.domain.tag;
 
-public class TagRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface TagRepository extends JpaRepository<Tag, Integer>{
 
 }
