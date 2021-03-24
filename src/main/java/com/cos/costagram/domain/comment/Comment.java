@@ -38,7 +38,7 @@ public class Comment {
 	@ManyToOne
 	private Image image;
 
-	@JoinColumn(name = "imageId")
+	@JoinColumn(name = "userId")
 	@ManyToOne
 	private User user;
 
