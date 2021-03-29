@@ -9,6 +9,7 @@
 - Spring Security
 - Spring Web
 - oauth2-client
+- QLRM
 
 ```xml
 <!-- 시큐리티 태그 라이브러리 -->

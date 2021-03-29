@@ -21,15 +21,24 @@
             <!--유저정보 및 사진등록 구독하기-->
             <div class="profile-right">
                 <div class="name-group">
-                    <h2>There Programing</h2>
-                    <button class="cta blue" onclick="location.href='/image/upload'">사진등록</button>
-                    <button class="cta">구독하기</button>
-                    <button class="modi" onclick="popup('.modal-info')"><i class="fas fa-cog"></i></button>
+                    <h2>${dto.user.username }</h2>
+                   
+                    <c:choose>
+                    <c:when test="${principal.user.id == dto.user.id }">
+                       <button class="cta" onclick="location.href='/image/upload'">사진등록</button>
+                         <button class="modi" onclick="popup('.modal-info')"><i class="fas fa-cog"></i></button>
+                    </c:when>            
+                    <c:otherwise>
+                     <button class="cta">구독하기</button>
+                     <button class="cta">구독취소</button>
+                    </c:otherwise>
+                    </c:choose>
+                 
                 </div>
                 <div class="follow">
                     <ul>
-                        <li><a href="">게시물<span>6</span></a> </li>
-                        <li><a href="" id="subscribeBtn">구독정보<span>106</span></a> </li>
+                        <li><a href="">게시물<span>${dto.imageCount }</span></a> </li>
+                        <li><a href="" id="subscribeBtn">구독정보<span>${dto.followCount }</span></a> </li>
                     </ul>
                 </div>
                 <div class="state">
