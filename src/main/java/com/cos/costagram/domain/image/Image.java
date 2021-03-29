@@ -45,15 +45,18 @@ public class Image {
 	
 	@OneToMany(mappedBy = "image")
 	private List<Likes> likes; // A이미지에 홍길동, 장보고, 임꺽정 좋아요.   (고소영)
-	
-	// comment (댓글)
+
 	@OneToMany(mappedBy = "image")
 	private List<Comment> comments;
 	
 	@CreationTimestamp
 	private Timestamp createDate;
 	
-	@Transient  // 칼럼이 만들어지지 않는다.
+	@Transient // 칼럼이 만들어지지 않는다.
 	private int likeCount;
+	
+	@Transient
+	private boolean likeState;
 }
+
 
