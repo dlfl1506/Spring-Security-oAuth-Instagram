@@ -1,5 +1,7 @@
 package com.cos.costagram.domain.follow;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -20,4 +22,6 @@ public interface FollowRepository extends JpaRepository<Follow, Integer>{
 	
 	@Query(value = "select count(*) from follow where fromUserId = :userId", nativeQuery = true)
 	int mFollowCount(int userId);
+	
+	
 }
