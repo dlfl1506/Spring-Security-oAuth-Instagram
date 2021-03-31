@@ -2,9 +2,7 @@
 
 <%@ include file="../layout/header.jsp"%>
 
-
-<input type="hidden"  id="userId"  value="${dto.user.id}"  />
-
+<input type="hidden" id="userId" value="${dto.user.id}" /> 
 
 <!--프로필 섹션-->
 <section class="profile">
@@ -37,10 +35,10 @@
 					<c:otherwise>
 						<c:choose>
 							<c:when test="${dto.followState}">
-								<button class="cta blue">구독취소</button>
+								<button class="cta blue" onclick="followOrUnFollowProfile(${dto.user.id})"  id="follow_profile_btn">구독취소</button>
 							</c:when>
 							<c:otherwise>
-								<button class="cta">구독하기</button>
+								<button class="cta" onclick="followOrUnFollowProfile(${dto.user.id})" id="follow_profile_btn">구독하기</button>
 							</c:otherwise>
 						</c:choose>
 
@@ -137,8 +135,6 @@
 
 		<!--팔로워 리스트-->
 		<div class="follower-list" id="follow_list">
-		
-			
 			
 			
 		</div>
