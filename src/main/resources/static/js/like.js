@@ -1,14 +1,39 @@
-function clickBtn() {
+function likeOrUnLike(imageId) {
   let _buttonI = event.target;
-
   if (_buttonI.classList.contains("far")) {
-    _buttonI.classList.add("fas");
-    _buttonI.classList.add("active");
-    _buttonI.classList.remove("far");
+	  $.ajax({
+		  type: "POST",
+		  url: `/image/${imageId}/likes`,
+		  dataType: "json"
+	  }).done(res=>{
+		  console.log(res);
+		    _buttonI.classList.add("fas");
+		    _buttonI.classList.add("active");
+		    _buttonI.classList.remove("far");
+		    let likeCountStr  = $(`#like_count-${imageId}`).text();
+		    let likeCount = Number(likeCountStr) + 1;
+		    $(`#like_count-${imageId}`).text(likeCount);
+	  });
+	  
+	  
+
   } else {
-    _buttonI.classList.remove("fas");
-    _buttonI.classList.remove("active");
-    _buttonI.classList.add("far");
+	  $.ajax({
+		  type: "DELETE",
+		  url: `/image/${imageId}/likes`,
+		  dataType: "json"
+	  }).done(res=>{
+		  console.log(res);
+		    _buttonI.classList.remove("fas");
+		    _buttonI.classList.remove("active");
+		    _buttonI.classList.add("far");
+		    let likeCountStr  = $(`#like_count-${imageId}`).text();
+		    let likeCount = Number(likeCountStr) - 1;
+		    $(`#like_count-${imageId}`).text(likeCount);
+	  });
+	  
+	  
+
   }
 }
 
@@ -39,21 +64,22 @@ function addComment(postId, username) {
   commentInput.value = "";
   // 서버에서 데이터 가져올때
   // fetch()
-  //   .then()
-  //   .then((data) => {
-  //     let content = `
-  //     <div class="sl__item__contents__comment">
-  //       <p>
-  //         <b>${data.user.username} : </b>
-  //         ${data.comment}
-  //       </p>
-  //       <button onClick="deleteComment(${data.commentId})"><i class="fas fa-times"></i></button>
-  //     </div>
-  //     `;
-  //     // 성공시
-  //     commentList.insertAdjacentElement("afterbegin", content);
-  //     commentInput.value = "";
-  //   });
+  // .then()
+  // .then((data) => {
+  // let content = `
+  // <div class="sl__item__contents__comment">
+  // <p>
+  // <b>${data.user.username} : </b>
+  // ${data.comment}
+  // </p>
+  // <button onClick="deleteComment(${data.commentId})"><i class="fas
+	// fa-times"></i></button>
+  // </div>
+  // `;
+  // // 성공시
+  // commentList.insertAdjacentElement("afterbegin", content);
+  // commentInput.value = "";
+  // });
 }
 
 function deleteComment(commentId) {
