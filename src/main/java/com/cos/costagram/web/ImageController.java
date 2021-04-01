@@ -37,7 +37,10 @@ public class ImageController {
 	}
 	
 	@GetMapping("/image/explore")
-	public String explore() {
+	public String explore(Model model, @AuthenticationPrincipal PrincipalDetails principalDetails) {
+		
+		model.addAttribute("images", imageService.인기사진(principalDetails.getUser().getId()));
+		
 		return "image/explore";
 	}
 	
@@ -65,6 +68,4 @@ public class ImageController {
 		return new CMRespDto<>(1, null);
 	}
 }
-
-
 

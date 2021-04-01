@@ -108,7 +108,7 @@
   background-color: transparent;
   width: 40px;
   font-size: 25px;
-  margin-right: 10px;
+  
   border: 0;
   cursor: pointer;
 }
@@ -226,5 +226,3 @@ svg {
   stroke-linecap: round;
   animation: loading 4500ms ease-in-out infinite alternate;
 }
-
-
