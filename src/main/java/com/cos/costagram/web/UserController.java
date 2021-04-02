@@ -7,10 +7,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cos.costagram.config.auth.PrincipalDetails;
-import com.cos.costagram.domain.follow.Follow;
+import com.cos.costagram.domain.user.User;
 import com.cos.costagram.service.FollowService;
 import com.cos.costagram.service.UserService;
 import com.cos.costagram.web.dto.CMRespDto;
@@ -23,7 +24,7 @@ import lombok.RequiredArgsConstructor;
 @Controller
 public class UserController {
 	
-	private final UserService UserService;
+	private final UserService userService;
 	private final FollowService followService;
 	
 	@GetMapping("/user/{pageUserId}/follow") // data 리턴하는 것
@@ -36,7 +37,7 @@ public class UserController {
 	@GetMapping("/user/{id}")
 	public String profile(@PathVariable int id, Model model, @AuthenticationPrincipal PrincipalDetails principalDetails) {
 		
-		UserProfileRespDto userProfileRespDto = UserService.회원프로필(id, principalDetails.getUser().getId());
+		UserProfileRespDto userProfileRespDto = userService.회원프로필(id, principalDetails.getUser().getId());
 		model.addAttribute("dto", userProfileRespDto);
 		
 		
@@ -46,5 +47,13 @@ public class UserController {
 	@GetMapping("/user/{id}/profileSetting")
 	public String profileSetting(@PathVariable int id) {
 		return "user/profileSetting";
+	}
+	
+	@PutMapping("/user/{id}")
+	public @ResponseBody CMRespDto<?> profileUpdate(@PathVariable int id, User user, @AuthenticationPrincipal PrincipalDetails principalDetails){
+		System.out.println(user);
+		User userEntity = userService.회원수정(id, user);
+		principalDetails.setUser(userEntity);
+		return new CMRespDto<>(1, null);
 	}
 }
