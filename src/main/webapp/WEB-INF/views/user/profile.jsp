@@ -51,7 +51,7 @@
 					<li><a href="">
 							게시물<span>${dto.imageCount}</span>
 						</a></li>
-					<li><a href="" id="subscribeBtn">
+					<li><a href="" id="subscribe_btn">
 							구독정보<span>${dto.followCount}</span>
 						</a></li>
 				</ul>
